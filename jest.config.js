@@ -1,11 +1,17 @@
 const config = {
   extensionsToTreatAsEsm: ['.ts'],
-  preset: 'ts-jest',
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
+  preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]sx?$': [
+    '^.+\\.tsx?$': [
       'ts-jest',
       {
+        tsconfig: {
+          noEmitOnError: false,
+        },
         useESM: true,
       },
     ],

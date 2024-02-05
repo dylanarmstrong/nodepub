@@ -1,10 +1,12 @@
 {
-  "extends": "@dylanarmstrong/tsconfig",
   "compilerOptions": {
-    "outDir": "./lib",
+    "outDir": "./lib"
   },
-  "exclude":[
+  "exclude": [
     "./node_modules"
   ],
-  "include": ["./src/**/*"]
+  "extends": "@dylanarmstrong/tsconfig",
+  "include": [
+    "./src/**/*"
+  ]
 }

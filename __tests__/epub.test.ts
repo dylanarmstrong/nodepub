@@ -2,7 +2,7 @@ import { jest } from '@jest/globals';
 
 jest.useFakeTimers().setSystemTime(new Date('2023-06-03 00:00:00'));
 
-const Epub = (await import('../lib/epub.js')).default;
+const Epub = (await import('../src/epub.js')).default;
 
 describe('epub', () => {
   const sections = [
@@ -69,10 +69,10 @@ describe('epub', () => {
       sections,
     });
 
-    expect(epub.data).toStrictEqual({
+    expect(epub.data).toEqual({
       cover: {
         base: 'cover.png',
-        data: expect.any(Buffer),
+        data: expect.any(Uint8Array),
         name: 'example/cover.png',
         properties: 'cover-image',
         type: 'image/png',
@@ -90,7 +90,7 @@ body { margin: 5px; }`,
         contents: 'Chapters',
         copyright: 'Dylan, 2023',
         cover: {
-          data: expect.any(Buffer),
+          data: expect.any(Uint8Array),
           name: 'example/cover.png',
         },
         description: 'A test book.',
@@ -114,14 +114,14 @@ body { margin: 5px; }`,
       resources: [
         {
           base: 'cover.png',
-          data: expect.any(Buffer),
+          data: expect.any(Uint8Array),
           name: 'example/cover.png',
           properties: 'cover-image',
           type: 'image/png',
         },
         {
           base: 'hat.png',
-          data: expect.any(Buffer),
+          data: expect.any(Uint8Array),
           name: 'example/hat.png',
           properties: '',
           type: 'image/png',
@@ -224,13 +224,13 @@ body { margin: 5px; }`,
       },
       {
         compress: true,
-        content: expect.any(Buffer),
+        content: expect.any(Uint8Array),
         folder: 'OPS/resources',
         name: 'cover.png',
       },
       {
         compress: true,
-        content: expect.any(Buffer),
+        content: expect.any(Uint8Array),
         folder: 'OPS/resources',
         name: 'hat.png',
       },

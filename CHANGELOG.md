@@ -1,4 +1,11 @@
 # CHANGE LOG
+## 2024-02-05 - v4.1.4
+- Version updates
+- Better ESM support
+
+## 2023-07-05 - v4.1.3
+- Move `@dylanarmstrong/tsconfig` to devDependencies
+
 ## 2023-07-04 - v4.1.2
 - Publish with types
 

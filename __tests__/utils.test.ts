@@ -6,7 +6,7 @@ jest.unstable_mockModule('node:fs/promises', () => ({
 
 const { mkdir } = await import('node:fs/promises');
 
-const { addResourceDetails, makeFolder } = await import('../lib/utils.js');
+const { addResourceDetails, makeFolder } = await import('../src/utils.js');
 
 describe('utils', () => {
   describe('addResourceDetails', () => {
@@ -21,12 +21,13 @@ describe('utils', () => {
       ['folder/some-file', ''],
     ];
 
-    const data = Buffer.from([0]);
+    const uData = new Uint8Array([0]);
+    const data = Buffer.from(uData);
 
     it.concurrent.each(cases)('%s is of type %s', (image, exp) =>
-      expect(addResourceDetails({ data, name: image })).toStrictEqual({
+      expect(addResourceDetails({ data, name: image })).toEqual({
         base: image.slice('folder/'.length),
-        data,
+        data: uData,
         name: image,
         properties: '',
         type: exp,

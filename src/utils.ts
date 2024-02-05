@@ -30,7 +30,7 @@ const addResourceDetails = (resource: Resource): Required<Resource> => {
     base: basename(name),
     properties: '',
     type: mime.getType(name) || '',
-  }) as Required<Resource>;
+  });
 };
 
 export { addResourceDetails, makeFolder, uniqueResources };
