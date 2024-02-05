@@ -1,4 +1,7 @@
 # CHANGE LOG
+## 2024-02-05 - v4.1.5
+- **FIX**: Fix resources not being buffers due to structuredClone
+
 ## 2024-02-05 - v4.1.4
 - Version updates
 - Better ESM support

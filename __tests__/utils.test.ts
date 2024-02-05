@@ -21,13 +21,12 @@ describe('utils', () => {
       ['folder/some-file', ''],
     ];
 
-    const uData = new Uint8Array([0]);
-    const data = Buffer.from(uData);
+    const data = Buffer.from([0]);
 
     it.concurrent.each(cases)('%s is of type %s', (image, exp) =>
       expect(addResourceDetails({ data, name: image })).toEqual({
         base: image.slice('folder/'.length),
-        data: uData,
+        data,
         name: image,
         properties: '',
         type: exp,

@@ -25,12 +25,20 @@ const uniqueResources = (acc: Resource[], cur: Resource) => {
 
 // Checks if a type already has been added manually by user
 const addResourceDetails = (resource: Resource): Required<Resource> => {
+  let { data } = resource;
   const { name } = resource;
-  return defaults(resource, {
+  const requiredResource = defaults(resource, {
     base: basename(name),
     properties: '',
     type: mime.getType(name) || '',
   });
+
+  // Overwrite because buffer has become an uint8array
+  if (!Buffer.isBuffer(data)) {
+    data = Buffer.from(data);
+  }
+  requiredResource.data = data;
+  return requiredResource;
 };
 
 export { addResourceDetails, makeFolder, uniqueResources };

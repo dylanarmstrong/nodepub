@@ -28,21 +28,27 @@ class Epub {
     resources = [],
     sections: partialSections,
   }: Document) {
-    const metadata = defaults(
+    const metadata: Required<Metadata> = defaults(
       partialMetadata,
       defaultMetadata,
-    ) as Required<Metadata>;
-    const options = defaults(
+    );
+
+    // Buffer being lost by defaults
+    if (typeof metadata.cover !== 'string' && typeof partialMetadata.cover !== 'string') {
+      metadata.cover.data = partialMetadata.cover.data;
+    }
+
+    const options: Required<Options> = defaults(
       partialOptions,
       defaultOptions,
-    ) as Required<Options>;
+    );
 
     const sections: Required<Section>[] = [];
     partialSections.forEach((section, index) => {
-      const requiredSection = defaults(
+      const requiredSection: Required<Section> = defaults(
         section,
         defaultSection,
-      ) as Required<Section>;
+      );
 
       const sectionIndex = index + 1;
       const filename = `${section.filename || `s${sectionIndex}`}.xhtml`;
